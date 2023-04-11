@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+#define WXDockit_Image(file)                 [DoraemonUtil imageNamed:file]
+
 @interface DoraemonUtil : NSObject
 
 @property (nonatomic, assign) NSInteger fileSize;
@@ -62,4 +65,7 @@
 + (UIViewController *)rootViewControllerForKeyWindow __attribute__((deprecated("此方法已弃用,请使用[UIViewController rootViewControllerForKeyWindow]")));
 
 + (UIViewController *)topViewControllerForKeyWindow __attribute__((deprecated("此方法已弃用,请使用[UIViewController topViewControllerForKeyWindow]")));
+
++ (UIImage *)imageNamed:(NSString *)name;
+
 @end

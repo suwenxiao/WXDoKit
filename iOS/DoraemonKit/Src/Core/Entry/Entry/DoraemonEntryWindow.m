@@ -14,6 +14,7 @@
 #import "DoraemonHomeWindow.h"
 #import "DoraemonStatusBarViewController.h"
 #import "DoraemonBuriedPointManager.h"
+#import "DoraemonUtil.h"
 
 @interface DoraemonEntryWindow()
 
@@ -30,11 +31,14 @@
     if (!_entryBtn) {
         _entryBtn = [[UIButton alloc] initWithFrame:self.bounds];
         _entryBtn.backgroundColor = [UIColor clearColor];
-        UIImage *image = [UIImage doraemon_xcassetImageNamed:@"doraemon_logo"];
+//        UIImage *image = WXDockit_Image(@"doraemon_logo"];
+        UIImage *image = WXDockit_Image(@"dk_doraemon");
+        NSLog(@"🍌🍌 image = %@", image);
 #if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
         if (@available(iOS 13.0, *)) {
             if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                image = [UIImage doraemon_xcassetImageNamed:@"doraemon_logo_dark"];
+//                image = WXDockit_Image(@"doraemon_logo_dark"];
+                image = WXDockit_Image(@"doraemon_logo_dark");
             }
         }
 #endif
@@ -53,9 +57,11 @@
     if (@available(iOS 13.0, *)) {
         if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
             if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-                [self.entryBtn setImage:[UIImage doraemon_xcassetImageNamed:@"doraemon_logo_dark"] forState:UIControlStateNormal];
+//                [self.entryBtn setImage:WXDockit_Image(@"doraemon_logo_dark"] forState:UIControlStateNormal];
+                [self.entryBtn setImage:WXDockit_Image(@"doraemon_logo_dark") forState:UIControlStateNormal];
             } else {
-                [self.entryBtn setImage:[UIImage doraemon_xcassetImageNamed:@"doraemon_logo"] forState:UIControlStateNormal];
+//                [self.entryBtn setImage:WXDockit_Image(@"doraemon_logo"] forState:UIControlStateNormal];
+                [self.entryBtn setImage:WXDockit_Image(@"doraemon_logo") forState:UIControlStateNormal];
             }
         }
     }
@@ -109,13 +115,14 @@
 }
 
 - (void)showClose:(NSNotification *)notification{
-    [_entryBtn setImage:[UIImage doraemon_xcassetImageNamed:@"doraemon_close"] forState:UIControlStateNormal];
+    [_entryBtn setImage:WXDockit_Image(@"doraemon_close") forState:UIControlStateNormal];
     [_entryBtn removeTarget:self action:@selector(showClose:) forControlEvents:UIControlEventTouchUpInside];
     [_entryBtn addTarget:self action:@selector(closePluginClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)closePluginClick:(UIButton *)btn{
-    [_entryBtn setImage:[UIImage doraemon_xcassetImageNamed:@"doraemon_logo"] forState:UIControlStateNormal];
+    [_entryBtn setImage:WXDockit_Image(@"doraemon_logo") forState:UIControlStateNormal];
+//    [_entryBtn setImage:WXDockit_Image(@"doraemon_logo"] forState:UIControlStateNormal];
     [_entryBtn removeTarget:self action:@selector(closePluginClick:) forControlEvents:UIControlEventTouchUpInside];
     [_entryBtn addTarget:self action:@selector(entryClick:) forControlEvents:UIControlEventTouchUpInside];
 }

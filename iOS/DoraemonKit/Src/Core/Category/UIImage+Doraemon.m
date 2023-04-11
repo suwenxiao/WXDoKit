@@ -44,6 +44,7 @@
         NSBundle *bundle = [NSBundle bundleForClass:NSClassFromString(@"DoraemonManager")];
         NSURL *url = [bundle URLForResource:@"DoraemonKit" withExtension:@"bundle"];
         if(!url) return [UIImage new];
+        
         NSBundle *imageBundle = [NSBundle bundleWithURL:url];
         UIImage *image = [UIImage imageNamed:name inBundle:imageBundle compatibleWithTraitCollection:nil];
         return image;

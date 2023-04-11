@@ -1,5 +1,6 @@
 #import <DoraemonKit/DKPickerView.h>
 #import <DoraemonKit/UIImage+Doraemon.h>
+#import <DoraemonKit/DoraemonUtil.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,7 @@ NS_ASSUME_NONNULL_END
     self.overflow = YES;
     self.backgroundColor = UIColor.clearColor;
     self.layer.cornerRadius = MIN(self.bounds.size.width, self.bounds.size.height) / 2.0;
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage doraemon_xcassetImageNamed:@"doraemon_visual"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:WXDockit_Image(@"doraemon_visual")];
     imageView.frame = self.bounds;
     [self addSubview:imageView];
 }

@@ -7,6 +7,7 @@
 
 #import "DoraemonHomeCell.h"
 #import "DoraemonDefine.h"
+#import "DoraemonUtil.h"
 
 @interface DoraemonHomeCell()
 
@@ -62,7 +63,7 @@
 }
 
 - (void)update:(NSString *)image name:(NSString *)name {
-    self.icon.image = [UIImage doraemon_xcassetImageNamed:image];
+    self.icon.image = WXDockit_Image(image);
     self.name.text = name;
 }
 

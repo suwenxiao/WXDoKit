@@ -102,6 +102,7 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     if (size.width > size.height) {
         defaultPosition = DoraemonFullScreenStartingPosition;
     }
+    NSLog(@"默认位置 point = %@", NSStringFromCGPoint(defaultPosition));
     [self installWithStartingPosition:defaultPosition];
 }
 
@@ -118,6 +119,7 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 - (void)installWithStartingPosition:(CGPoint) position{
     _startingPosition = position;
     [self installWithCustomBlock:^{
+        NSLog(@"这里走了.....");
         //什么也没发生
     }];
 }
@@ -218,30 +220,30 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
  */
 - (void)initData{
     #pragma mark - 平台工具
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonMockPlugin];
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonHealthPlugin];
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonFileSyncPlugin];
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonMockPlugin];
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonHealthPlugin];
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonFileSyncPlugin];
     
     #pragma mark - 常用工具
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonAppSettingPlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonAppInfoPlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonSandboxPlugin];
-#if DoraemonWithGPS
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonGPSPlugin];
-#endif
+//#if DoraemonWithGPS
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonGPSPlugin];
+//#endif
 
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonH5Plugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonDeleteLocalDataPlugin];
     
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonNSLogPlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonNSUserDefaultsPlugin];
-#if DoraemonWithLogger
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonCocoaLumberjackPlugin];
-#endif
+//#if DoraemonWithLogger
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonCocoaLumberjackPlugin];
+//#endif
     
-#if DoraemonWithDatabase
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonDatabasePlugin];
-#endif
+//#if DoraemonWithDatabase
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonDatabasePlugin];
+//#endif
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonJavaScriptPlugin];
     
     #pragma mark - 性能检测
@@ -257,12 +259,12 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonStartTimePlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonUIProfilePlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonTimeProfilePlugin];
-#if DoraemonWithLoad
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonMethodUseTimePlugin];
-#endif
-#if DoraemonWithMLeaksFinder
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonMemoryLeakPlugin];
-#endif
+//#if DoraemonWithLoad
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonMethodUseTimePlugin];
+//#endif
+//#if DoraemonWithMLeaksFinder
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonMemoryLeakPlugin];
+//#endif
     
     #pragma mark - 视觉工具
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonColorPickPlugin];
@@ -271,13 +273,13 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonViewMetricsPlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonHierarchyPlugin];
     
-    #pragma mark - Weex专项工具
-    #if DoraemonWithWeex
-        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexLogPlugin];
-        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexStoragePlugin];
-        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexInfoPlugin];
-        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexDevToolPlugin];
-    #endif
+//    #pragma mark - Weex专项工具
+//    #if DoraemonWithWeex
+//        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexLogPlugin];
+//        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexStoragePlugin];
+//        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexInfoPlugin];
+//        [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonWeexDevToolPlugin];
+//    #endif
 }
 
 /**
@@ -736,30 +738,30 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
                                            @{kBuriedPoint:@"dokit_sdk_ui_ck_widget_3d"}
                                    ],
                            // 平台工具
-                           @(DoraemonManagerPluginType_DoraemonMockPlugin) : @[
-                                @{kTitle:DoraemonLocalizedString(@"Mock数据")},
-                                   @{kDesc:DoraemonLocalizedString(@"Mock数据")},
-                                   @{kIcon:@"doraemon_mock"},
-                                   @{kPluginName:@"DoraemonMockPlugin"},
-                                   @{kAtModule:DoraemonLocalizedString(@"平台工具")},
-                                   @{kBuriedPoint:@"dokit_sdk_platform_ck_mock"}
-                                   ],
-                           @(DoraemonManagerPluginType_DoraemonHealthPlugin) : @[
-                               @{kTitle:DoraemonLocalizedString(@"健康体检")},
-                                  @{kDesc:DoraemonLocalizedString(@"健康体检中心")},
-                                  @{kIcon:@"doraemon_health"},
-                                  @{kPluginName:@"DoraemonHealthPlugin"},
-                                  @{kAtModule:DoraemonLocalizedString(@"平台工具")},
-                                  @{kBuriedPoint:@"dokit_sdk_platform_ck_health"}
-                                  ],
-                           @(DoraemonManagerPluginType_DoraemonFileSyncPlugin) : @[
-                                @{kTitle:DoraemonLocalizedString(@"文件同步")},
-                                    @{kDesc:DoraemonLocalizedString(@"文件同步")},
-                                    @{kIcon:@"doraemon_file_sync"},
-                                    @{kPluginName:@"DoraemonFileSyncPlugin"},
-                                    @{kAtModule:DoraemonLocalizedString(@"平台工具")},
-                                    @{kBuriedPoint:@"dokit_sdk_platform_ck_filesync"}
-                                    ]
+//                           @(DoraemonManagerPluginType_DoraemonMockPlugin) : @[
+//                                @{kTitle:DoraemonLocalizedString(@"Mock数据")},
+//                                   @{kDesc:DoraemonLocalizedString(@"Mock数据")},
+//                                   @{kIcon:@"doraemon_mock"},
+//                                   @{kPluginName:@"DoraemonMockPlugin"},
+//                                   @{kAtModule:DoraemonLocalizedString(@"平台工具")},
+//                                   @{kBuriedPoint:@"dokit_sdk_platform_ck_mock"}
+//                                   ],
+//                           @(DoraemonManagerPluginType_DoraemonHealthPlugin) : @[
+//                               @{kTitle:DoraemonLocalizedString(@"健康体检")},
+//                                  @{kDesc:DoraemonLocalizedString(@"健康体检中心")},
+//                                  @{kIcon:@"doraemon_health"},
+//                                  @{kPluginName:@"DoraemonHealthPlugin"},
+//                                  @{kAtModule:DoraemonLocalizedString(@"平台工具")},
+//                                  @{kBuriedPoint:@"dokit_sdk_platform_ck_health"}
+//                                  ],
+//                           @(DoraemonManagerPluginType_DoraemonFileSyncPlugin) : @[
+//                                @{kTitle:DoraemonLocalizedString(@"文件同步")},
+//                                    @{kDesc:DoraemonLocalizedString(@"文件同步")},
+//                                    @{kIcon:@"doraemon_file_sync"},
+//                                    @{kPluginName:@"DoraemonFileSyncPlugin"},
+//                                    @{kAtModule:DoraemonLocalizedString(@"平台工具")},
+//                                    @{kBuriedPoint:@"dokit_sdk_platform_ck_filesync"}
+//                                    ]
                            }[@(pluginType)];
     
     DoraemonManagerPluginTypeModel *model = [DoraemonManagerPluginTypeModel new];

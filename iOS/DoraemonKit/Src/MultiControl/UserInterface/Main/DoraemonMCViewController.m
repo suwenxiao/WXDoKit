@@ -40,7 +40,7 @@
 - (UIImageView *)banner {
     if (!_banner) {
         CGFloat marginTop = 100 ;
-        UIImage *bannerImg =  [UIImage doraemon_xcassetImageNamed:@"dk_mc_banner"];
+        UIImage *bannerImg = WXDockit_Image(@"dk_mc_banner");
         CGFloat bannerHeight = 300 ;
         if (bannerImg.size.width) {
             bannerHeight = self.view.bounds.size.width * bannerImg.size.height/bannerImg.size.width;

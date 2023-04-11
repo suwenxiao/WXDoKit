@@ -56,7 +56,7 @@
         }];
         if (currentAction && [actionTitle isEqualToString:currentAction]) {
             action.enabled = NO;
-            [action setValue:[UIImage doraemon_xcassetImageNamed:@"doraemon_hierarchy_select"] forKey:@"image"];
+            [action setValue:WXDockit_Image(@"doraemon_hierarchy_select") forKey:@"image"];
         }
         [alert addAction:action];
     }

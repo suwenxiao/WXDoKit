@@ -100,15 +100,15 @@
 
 
 - (void)update:(NSString *)image name:(NSString *)name select:(BOOL)select editStatus:(BOOL)editStatus{
-    self.icon.image = [UIImage doraemon_xcassetImageNamed:image];
+    self.icon.image = WXDockit_Image(image);
     self.name.text = name;
     if (editStatus) {
         self.select.hidden = NO;
         if (select) {
-            self.select.image = [UIImage doraemon_xcassetImageNamed:@"doraemon_check_circle_fill"];
+            self.select.image = WXDockit_Image(@"doraemon_check_circle_fill");
             self.maskView.hidden = YES;
         }else{
-            self.select.image = [UIImage doraemon_xcassetImageNamed:@"doraemon_check_circle"];
+            self.select.image = WXDockit_Image(@"doraemon_check_circle");
             self.maskView.hidden = NO;
         }
     }else{
